@@ -3,7 +3,8 @@ CPP = g++
 DEFS =
 DIR_SUPPORT = support
 DIR_CPU = cpu
-INCDIR = -I. -I$(DIR_SUPPORT) -T$(DIR_CPU)
+DIR_PERIPHERAL = peripheral
+INCDIR = -I. -I$(DIR_SUPPORT) -T$(DIR_CPU) -I$(DIR_PERIPHERAL)
 
 CPPFLAGS = $(DEFS) $(INCDIR) -g -Wall -std=c++0x
 LDFLAGS =
@@ -14,7 +15,8 @@ OBJS = main.o \
 	support/schedule.o \
 	cpu/cpu.o \
 	cpu/bus_interface.o \
-	pheri/memory.o
+	peripheral/peripheral.o \
+	peripheral/memory.o
 
 SRCS = $(OBJS:.o=.cpp)
 
@@ -33,6 +35,7 @@ tag :
 	@ctags *.cpp *.h \
 	$(DIR_SUPPORT)/*.cpp $(DIR_SUPPORT)/*.h \
 	$(DIR_CPU)/*.cpp $(DIR_CPU)/*.h \
+	$(DIR_PERIPHERAL)/*.cpp $(DIR_PERIPHERAL)/*.h
 
 dep:
 	@$(CPP) -M $(SRCS) $(INCDIR) $(DEFS) > .depend
