@@ -1,3 +1,7 @@
+tags
+.depend
+*.swp
+
 # Compiled Object files
 *.slo
 *.lo
