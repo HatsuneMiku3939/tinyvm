@@ -15,7 +15,7 @@ namespace Simulator
     {
         public:
             BusInterface();
-            ~BusInterface();
+            virtual ~BusInterface();
 
             void write(uint32_t addr, uint32_t data);
             uint32_t read(uint32_t addr);
