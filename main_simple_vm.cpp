@@ -10,7 +10,7 @@
 #include <vector>
 
 // package includes
-#include "main.h"
+#include "main_simple_vm.h"
 
 #include "simple_vm.h"
 #include "memory.h"
