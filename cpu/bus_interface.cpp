@@ -25,12 +25,12 @@ namespace Simulator
         std::vector<Entry>::iterator it;
         it = find_peripheral(addr);
 
-        if(it == peripherals.end())
+        if(it != peripherals.end())
         {
-            // TODO, bus exception
+            return it->peripheral->write(addr - it->start_addr, data);
         }
 
-        it->peripheral->write(addr - it->start_addr, data);
+        // TODO, bus exception
     }
 
     uint32_t BusInterface::read(uint32_t addr)
@@ -38,12 +38,12 @@ namespace Simulator
         std::vector<Entry>::iterator it;
         it = find_peripheral(addr);
 
-        if(it == peripherals.end())
+        if(it != peripherals.end())
         {
-            // TODO, bus exception
+            return it->peripheral->read(addr - it->start_addr);
         }
 
-        return it->peripheral->read(addr - it->start_addr);
+        // TODO, bus exception
     }
 
     void BusInterface::add_peripheral(uint32_t start_addr, Peripheral *peripheral)
@@ -71,7 +71,7 @@ namespace Simulator
         it = find_if(peripherals.begin(), peripherals.end(), [addr](Entry e) -> bool
             {
                 // TODO, refectoring is required, more compact condition
-                return (e.start_addr >= addr) && (e.start_addr + e.addr_range >= addr);
+                return (addr >= e.start_addr) && (e.start_addr + e.addr_range >= addr);
             }
         );
 
