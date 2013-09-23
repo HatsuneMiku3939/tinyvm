@@ -47,7 +47,7 @@ namespace Simulator
 
         uint32_t pc = regs[PC];
         uint32_t inst = inst_bus->read(pc);
-        uint32_t bus_delay = 3;
+        uint32_t bus_delay = inst_bus->get_access_delay(pc);
 
         schedule->add(bus_delay, bind(mem_fn(&CPU::decode), this, _1), vector<uint32_t>({inst}));
         regs[PC] += 4;

@@ -11,12 +11,10 @@
 
 namespace Simulator
 {
-    Memory::Memory(uint32_t _addr_range, uint32_t _access_delay) : Peripheral(_addr_range)
+    Memory::Memory(uint32_t _addr_range, uint32_t _access_delay) : Peripheral(_addr_range, _access_delay)
     {
         size_t size = _addr_range >> 2;
         memory = new uint32_t[size];
-
-        access_delay = _access_delay;
     }
 
     Memory::~Memory()
@@ -36,8 +34,4 @@ namespace Simulator
         return memory[word_address];
     }
 
-    uint32_t Memory::get_access_delay(void)
-    {
-        return access_delay;
-    }
 };
