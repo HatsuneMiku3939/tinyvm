@@ -14,7 +14,7 @@ PROG = test
 OBJS = main.o \
 	support/schedule.o \
 	cpu/cpu.o \
-	cpu/bus_interface.o \
+	peripheral/bus_interface.o \
 	peripheral/peripheral.o \
 	peripheral/memory.o
 
