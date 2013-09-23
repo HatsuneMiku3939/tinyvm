@@ -9,8 +9,7 @@ INCDIR = -I. -I$(DIR_SUPPORT) -I$(DIR_CPU) -I$(DIR_PERIPHERAL)
 CPPFLAGS = $(DEFS) $(INCDIR) -g -Wall -std=c++0x
 LDFLAGS =
 
-OBJS = main.o \
-	support/schedule.o \
+OBJS = support/schedule.o \
 	cpu/cpu.o \
 	peripheral/bus_interface.o \
 	peripheral/peripheral.o \
@@ -27,7 +26,8 @@ all : dep simple_vm tag
 simple_vm: dep $(OBJS)
 	@echo LINK simple_vm
 	@$(CPP) $(CPPFLAGS) -c cpu/simple_vm.cpp -o cpu/simple_vm.o
-	@$(CPP) -o simple_vm.exe $(OBJS) cpu/simple_vm.o $(LDFLAGS)
+	@$(CPP) $(CPPFLAGS) -c main_simple_vm.cpp -o main_simple_vm.o
+	@$(CPP) -o simple_vm.exe $(OBJS) cpu/simple_vm.o main_simple_vm.o $(LDFLAGS)
 
 simple_vm_clean:
 	@rm -rf cpu/simple_vm.o
