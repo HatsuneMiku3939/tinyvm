@@ -21,6 +21,7 @@ namespace Simulator
 
             void write(uint32_t addr, uint32_t data);
             uint32_t read(uint32_t addr);
+            uint32_t get_access_delay(uint32_t addr);
 
             void add_peripheral(uint32_t start_addr, Peripheral *peripheral);
 

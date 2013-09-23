@@ -44,6 +44,20 @@ namespace Simulator
         }
 
         // TODO, bus exception
+        return 0;
+    }
+
+    uint32_t BusInterface::get_access_delay(uint32_t addr)
+    {
+        std::vector<Entry>::iterator it;
+        it = find_peripheral(addr);
+
+        if(it != peripherals.end())
+        {
+            return it->peripheral->get_access_delay();
+        }
+
+        return 0;
     }
 
     void BusInterface::add_peripheral(uint32_t start_addr, Peripheral *peripheral)

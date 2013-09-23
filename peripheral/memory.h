@@ -21,11 +21,8 @@ namespace Simulator
             void write(uint32_t addr, uint32_t data);
             uint32_t read(uint32_t addr);
 
-            uint32_t get_access_delay(void);
-
         private:
             uint32_t *memory;
-            uint32_t access_delay;
     };
 };
 
