@@ -20,20 +20,10 @@ namespace Simulator
             ~CPU();
 
         public:
-            void fetch(std::vector<uint32_t> params);
-            void decode(std::vector<uint32_t> params);
+            virtual void fetch(std::vector<uint32_t> params) = 0;
+            virtual void decode(std::vector<uint32_t> params) = 0;
 
-        public:
-            void halt(std::vector<uint32_t> params);
-            void load(std::vector<uint32_t> params);
-            void add(std::vector<uint32_t> params);
-            void sub(std::vector<uint32_t> params);
-            void print(std::vector<uint32_t> params);
-
-        private:
-            int regs[16];
-
-        private:
+        protected:
             Schedule *schedule;
             BusInterface *inst_bus;
             BusInterface *data_bus;

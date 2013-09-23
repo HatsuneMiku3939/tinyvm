@@ -9,8 +9,6 @@ INCDIR = -I. -I$(DIR_SUPPORT) -I$(DIR_CPU) -I$(DIR_PERIPHERAL)
 CPPFLAGS = $(DEFS) $(INCDIR) -g -Wall -std=c++0x
 LDFLAGS =
 
-PROG = test
-
 OBJS = main.o \
 	support/schedule.o \
 	cpu/cpu.o \
@@ -24,12 +22,18 @@ SRCS = $(OBJS:.o=.cpp)
 	@echo CPP $<
 	@$(CPP) $(CPPFLAGS) -c $< -o $@
 
-all : dep $(OBJS) tag
-	@echo LINK $(PROG)
-	@$(CPP) -o $(PROG).exe $(OBJS) $(LDFLAGS)
+all : dep simple_vm tag
 
-clean :
-	@rm -f $(PROG).exe $(OBJS) .depend tags
+simple_vm: dep $(OBJS)
+	@echo LINK simple_vm
+	@$(CPP) $(CPPFLAGS) -c cpu/simple_vm.cpp -o cpu/simple_vm.o
+	@$(CPP) -o simple_vm.exe $(OBJS) cpu/simple_vm.o $(LDFLAGS)
+
+simple_vm_clean:
+	@rm -rf cpu/simple_vm.o
+
+clean : simple_vm_clean
+	@rm -f *.exe $(OBJS) .depend tags
 
 tag :
 	@ctags *.cpp *.h \
