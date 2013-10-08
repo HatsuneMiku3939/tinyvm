@@ -1,4 +1,5 @@
 TinyVM
 ======
 
-simple virtual machine
+very simple virtual machine implementation
+
