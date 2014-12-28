@@ -24,7 +24,7 @@
 
 #define FIELD_MSB(field) field[0]
 #define FIELD_LSB(field) field[1]
-#define DECODE(instr, field) (instr & ((1 << (FIELD_MSB(field))+1) - 1)) >> FIELD_LSB(field)
+#define DECODE(instr, field) (instr & ((1 << ((FIELD_MSB(field))+1)) - 1)) >> FIELD_LSB(field)
 
 namespace Simulator
 {
@@ -61,11 +61,11 @@ namespace Simulator
         static const int field_reg3[] = {3, 0};
         static const int field_imm[] = {7, 0};
 
-        int inst = DECODE(params[0], field_instr);
-        int operand1 = DECODE(params[0], field_reg1);
-        int operand2 = DECODE(params[0], field_reg2);
-        int operand3 = DECODE(params[0], field_reg3);
-        int imm = DECODE(params[0], field_imm);
+        unsigned int inst = DECODE(params[0], field_instr);
+        unsigned int operand1 = DECODE(params[0], field_reg1);
+        unsigned int operand2 = DECODE(params[0], field_reg2);
+        unsigned int operand3 = DECODE(params[0], field_reg3);
+        unsigned int imm = DECODE(params[0], field_imm);
 
         bool stoped = false;
         int process_delay;
