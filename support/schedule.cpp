@@ -59,9 +59,9 @@ namespace Simulator
             it++;
         }
 
-        job_queue.remove_if([current_tick](Entry e) -> bool
+        job_queue.remove_if([this](Entry e) -> bool
             {
-                return current_tick >= e.scheduled_tick;
+                return this->current_tick >= e.scheduled_tick;
             }
         );
     }
