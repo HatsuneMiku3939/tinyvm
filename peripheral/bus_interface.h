@@ -5,7 +5,6 @@
 #include "config.h"
 
 // system includes
-#include <stdint.h>
 #include <vector>
 
 // package includes
