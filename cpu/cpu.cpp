@@ -2,7 +2,6 @@
 #include "config.h"
 
 // system includes
-#include <stdint.h>
 #include <functional>
 #include <vector>
 #include <iostream>

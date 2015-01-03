@@ -2,7 +2,6 @@
 #include "config.h"
 
 // system includes
-#include <stdint.h>
 #include <signal.h>
 #include <iostream>
 #include <cstdlib>
